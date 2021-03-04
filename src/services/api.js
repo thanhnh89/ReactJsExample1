@@ -85,10 +85,12 @@ const create = (baseUrl = null) => {
 
     const login = params => generatePost('/login', params);
     const getUserInfo = (id) => generateGet(`/userInfo?id=${id}`);
+    const getName = () => generateGet(`/getName`);
 
   return {
     login,
     getUserInfo,
+    getName,
   };
 };
 

@@ -6,14 +6,13 @@ import {
 import PrivateRoute from './PrivateRoute';
 import Login from "./containers/login/Login";
 import NotFound from "./containers/notFound/NotFound";
+import Main from "./containers/main/Main";
 
 const App = () => {
   return (
       <BrowserRouter>
           <Switch>
-            {
-              // <PrivateRoute exact path="/" component={DashBoard} />
-            }
+            <PrivateRoute exact path="/" component={Main} />
             <Route exact path="/login" component={Login} /> 
             <Route component={NotFound} />
           </Switch>

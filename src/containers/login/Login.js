@@ -4,6 +4,7 @@ import {
     Input, Button, Blank,
 } from "./loginStyle";
 import api from "../../services/api";
+import StorageUtils from '../../helpers/StorageUtils';
 
 class Login extends Component {
   constructor(props) {
@@ -12,6 +13,8 @@ class Login extends Component {
       userName: '',
       password: 0,
     }
+    this.handleUserName1 = this.handleUserName.bind(this);
+    this.handlePassword1 = this.handlePassword.bind(this);
   }
 
   login() {
@@ -19,9 +22,15 @@ class Login extends Component {
         userName: this.state.userName,
         password: this.state.password,
     };
+
     api.create().login(params)
     .then(response => {
-        console.log('response = ', response);
+        const { data } = response;
+        const { token } = data;
+        console.log('token ', token);
+        StorageUtils.setItem('token', token);
+        window.location.replace('/');
+
     })
     .catch((error) => {
       const { message } = error;
@@ -40,23 +49,37 @@ class Login extends Component {
     });
   }
 
+  handleUserName(event) {
+    this.setState({ userName: event.target.value})
+  }
 
+  handlePassword(event) {
+    this.setState({ password: event.target.value})
+  }
 
   render() {
     return (
       <Wrapper>
         <PopupLoginWrapper>
-          <Text color="#d3c8c8" fontSize={20}>LOGIN</Text>
+          <Text color="#d3c8c8" fontSize={25}>LOGIN</Text>
           <Row>
             <Text color="#d3c8c8" fontSize={20}>User name</Text>
-            <Input />
+            <Input
+              value={this.state.userName}
+              onChange={this.handleUserName1}
+            />
           </Row>
           <Blank height={0.2} />
           <Row>
             <Text color="#d3c8c8" fontSize={20}>Password</Text>
-            <Input />
+            <Input
+              value={this.state.password}
+              onChange={this.handlePassword1}
+              type="password"
+            />
           </Row>
           <Button onClick={() => this.login()}>Login</Button>
+          <Button onClick={() => this.getUserInfo()}>getUserInfo</Button>
         </PopupLoginWrapper>
       </Wrapper>
     )

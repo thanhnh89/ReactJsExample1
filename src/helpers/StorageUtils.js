@@ -22,7 +22,7 @@ export default class StorageUtils {
   }
 
   static getToken() {
-    StorageUtils.getItem(STORAGE_KEYS.token, '');
+    return StorageUtils.getItem(STORAGE_KEYS.token, '');
   }
 
 }
