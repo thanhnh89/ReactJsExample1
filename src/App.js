@@ -1,7 +1,7 @@
-import React , { Component } from 'react';
+import React from 'react';
 import {
   BrowserRouter, Switch,
-  Route, Redirect,
+  Route,
 } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import Login from "./containers/login/Login";

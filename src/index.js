@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App1, { PI } from './App';
-// import App1 from './a';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
